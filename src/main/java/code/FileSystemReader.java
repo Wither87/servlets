@@ -55,8 +55,10 @@ public class FileSystemReader {
             if (file.isFile()){
                 sb.append(
                     String.format(
-                    "<p>File: <a download href=\"%s\">%s</a><br>Size: %d B<br>Date: %s</p>",
-                    file.getName(),
+                    //"<p>File: <a download href=\"%s\">%s</a><br>Size: %d B<br>Date: %s</p>",
+                    "<p>File: <a href=\"%s%s\">%s</a><br>Size: %d B<br>Date: %s</p>",
+                    "DownloadServlet?path=",
+                    file.getAbsolutePath(),
                     file.getName(),
                     file.length(),
                     new Date(file.lastModified())
