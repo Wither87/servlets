@@ -1,3 +1,8 @@
-code\MainServlet.class
-code\FileSystemReader.class
-code\DownloadServlet.class
+Accounts\UserProfile.class
+Servlets\DownloadServlet.class
+Servlets\FileSystemReader.class
+Servlets\LogoutServlet.class
+Servlets\RegistrationServlet.class
+Servlets\LoginServlet.class
+Accounts\AccountService.class
+Servlets\FilesServlet.class
