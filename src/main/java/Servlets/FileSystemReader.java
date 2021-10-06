@@ -1,5 +1,7 @@
 package Servlets;
 
+import Accounts.AccountService;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +11,16 @@ public class FileSystemReader {
     private final String _parentPath;
     private final File[] _files;
 
-    public FileSystemReader(String path)
+    public FileSystemReader(String path, String userHomePath)
     {
         _path = path;
         File currentFile = new File(_path);
-        _parentPath = currentFile.getParent();
+        if (!currentFile.getParent().startsWith(userHomePath)){
+            _parentPath = null;
+        }
+        else{
+            _parentPath = currentFile.getParent();
+        }
         _files = currentFile.listFiles();
     }
 

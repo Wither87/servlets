@@ -1,9 +1,13 @@
 package Accounts;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AccountService {
+    private static final Path homeDirectory = Paths.get("D:\\test\\users\\");
+
     private static final Map<String, UserProfile> loginToProfile;
     private static final Map<String, UserProfile> sessionIdToProfile;
 
@@ -13,6 +17,8 @@ public class AccountService {
 
         loginToProfile.put("admin", new UserProfile("admin"));
     }
+
+    public static Path getHomeDirectory(){ return homeDirectory; }
 
     public static void addNewUser(UserProfile userProfile){
         loginToProfile.put(userProfile.getLogin(), userProfile);

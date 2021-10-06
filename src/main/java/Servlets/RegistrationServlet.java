@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
@@ -25,7 +28,16 @@ public class RegistrationServlet extends HttpServlet {
             resp.sendRedirect("/registration.jsp");
             return;
         }
-        AccountService.addNewUser(new UserProfile(login, pass, email));
+        Path userDirectoryPath = Paths.get(AccountService.getHomeDirectory().toString() + '\\' + login);
+        if (Files.exists(userDirectoryPath)){
+            resp.setContentType("text/html;charset=utf-8");
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+        Files.createDirectory(userDirectoryPath);
+        UserProfile profile = new UserProfile(login, pass, email);
+        AccountService.addNewUser(profile);
+        AccountService.addSession(req.getSession().getId(), profile);
         resp.setContentType("text/html;charset=utf-8");
         resp.setStatus(HttpServletResponse.SC_OK);
         resp.sendRedirect("/files");
