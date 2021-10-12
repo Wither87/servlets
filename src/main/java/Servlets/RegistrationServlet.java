@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
@@ -28,7 +30,7 @@ public class RegistrationServlet extends HttpServlet {
             resp.sendRedirect("/registration.jsp");
             return;
         }
-        Path userDirectoryPath = Paths.get(AccountService.getHomeDirectory().toString() + '\\' + login);
+        Path userDirectoryPath = Paths.get(AccountService.getHomeDirectory() + login);
         if (Files.exists(userDirectoryPath)){
             resp.setContentType("text/html;charset=utf-8");
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);

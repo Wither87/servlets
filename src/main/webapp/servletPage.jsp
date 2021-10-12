@@ -18,10 +18,8 @@
                 <input class="button" type="submit" value="Выйти"/>
             </form>
         </div>
-        <h1>
-            <!-- Теущая папка -->
-
-        </h1>
+        <!-- Теущая папка -->
+        <h1><%=request.getAttribute("path")%></h1>
         <hr>
         <div>
             <!-- Переход назад -->

@@ -12,6 +12,7 @@ import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("login.jsp").forward(req, resp);
@@ -21,7 +22,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String pass = req.getParameter("pass");
-        if (login == null || pass == null){
+        if (login == null || login.equals("") || pass == null || pass.equals("")){
             resp.sendRedirect("login.jsp");
             return;
         }
