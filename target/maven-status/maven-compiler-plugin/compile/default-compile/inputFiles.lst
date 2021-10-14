@@ -1,14 +1,9 @@
-E:\Рабочий стол\Java\servlets 5 module v3\src\main\java\Servlets\RegistrationServlet.java
-E:\Рабочий стол\Java\servlets 5 module v3\src\main\java\Servlets\FileSystemReader.java
-E:\Рабочий стол\Java\servlets 5 module v3\src\main\java\Servlets\FilesServlet.java
-E:\Рабочий стол\Java\servlets 5 module v3\src\main\java\DataBase\DBService.java
-E:\Рабочий стол\Java\servlets 5 module v3\src\main\java\DataBase\dao\UsersDAO.java
-E:\Рабочий стол\Java\servlets 5 module v3\src\main\java\DataBase\dataSets\UsersDataSet.java
-E:\Рабочий стол\Java\servlets 5 module v3\src\main\java\Servlets\LogoutServlet.java
-E:\Рабочий стол\Java\servlets 5 module v3\src\main\java\Accounts\UserProfile.java
-E:\Рабочий стол\Java\servlets 5 module v3\src\main\java\DataBase\DBException.java
-E:\Рабочий стол\Java\servlets 5 module v3\src\main\java\DataBase\executor\ResultHandler.java
-E:\Рабочий стол\Java\servlets 5 module v3\src\main\java\DataBase\executor\Executor.java
-E:\Рабочий стол\Java\servlets 5 module v3\src\main\java\Accounts\AccountService.java
-E:\Рабочий стол\Java\servlets 5 module v3\src\main\java\Servlets\DownloadServlet.java
-E:\Рабочий стол\Java\servlets 5 module v3\src\main\java\Servlets\LoginServlet.java
+D:\Джава\Java\servlets 5 module v3\src\main\java\Accounts\AccountService.java
+D:\Джава\Java\servlets 5 module v3\src\main\java\Servlets\RegistrationServlet.java
+D:\Джава\Java\servlets 5 module v3\src\main\java\Accounts\UserProfile.java
+D:\Джава\Java\servlets 5 module v3\src\main\java\Servlets\FileSystemReader.java
+D:\Джава\Java\servlets 5 module v3\src\main\java\Servlets\DownloadServlet.java
+D:\Джава\Java\servlets 5 module v3\src\main\java\Servlets\LoginServlet.java
+D:\Джава\Java\servlets 5 module v3\src\main\java\Servlets\FilesServlet.java
+D:\Джава\Java\servlets 5 module v3\src\main\java\Servlets\LogoutServlet.java
+D:\Джава\Java\servlets 5 module v3\src\main\java\DataBase\DBService.java

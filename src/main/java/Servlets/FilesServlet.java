@@ -8,27 +8,31 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @WebServlet(urlPatterns = {"/files"})
 public class FilesServlet extends HttpServlet {
+
+    private final AccountService accountService = AccountService.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        UserProfile profile =  AccountService.getUserBySessionId(req.getSession().getId());
+        UserProfile profile =  accountService.getUserBySessionId(req.getSession().getId());
         if (profile == null){
             resp.setContentType("text/html;charset=utf-8");
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
         String path = req.getParameter("path");
-        String userDirectoryPath = AccountService.getHomeDirectory() + profile.getLogin();
         if (path == null || path.equals("")) {
-            path = userDirectoryPath;
+            String userDirRedirect = "/files?path=" + accountService.getUserHomeDirectory(profile);
+            resp.sendRedirect(userDirRedirect);
+            return;
         }
-        String absolutePath = Paths.get(path).toAbsolutePath().toString();
+
+        String absolutePath = getCanonicalPath(path);
+        String userDirectoryPath = accountService.getUserHomeDirectory(profile);
         if (!absolutePath.startsWith(userDirectoryPath)){
             resp.setContentType("text/html;charset=utf-8");
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -40,5 +44,9 @@ public class FilesServlet extends HttpServlet {
         req.setAttribute("parent", fsr.getParentDirectory());
         req.setAttribute("path", fsr.getPath());
         req.getRequestDispatcher("servletPage.jsp").forward(req, resp);
+    }
+
+    private String getCanonicalPath(String path) throws IOException {
+        return new File(path).getCanonicalPath() + '\\';
     }
 }

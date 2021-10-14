@@ -15,7 +15,7 @@ public class LogoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String sessionId = req.getSession().getId();
-        AccountService.deleteSession(sessionId);
+        AccountService.getInstance().deleteSession(sessionId);
         resp.sendRedirect(super.getServletContext().getContextPath());
     }
 }

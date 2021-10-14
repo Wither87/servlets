@@ -1,14 +1,10 @@
-Servlets\RegistrationServlet.class
-Servlets\FilesServlet.class
 Accounts\UserProfile.class
 Servlets\DownloadServlet.class
+Servlets\RootServlet.class
 Servlets\FileSystemReader.class
-DataBase\dataSets\UsersDataSet.class
 Servlets\LogoutServlet.class
-DataBase\executor\ResultHandler.class
-DataBase\DBException.class
-DataBase\dao\UsersDAO.class
+Servlets\RegistrationServlet.class
 Servlets\LoginServlet.class
 DataBase\DBService.class
 Accounts\AccountService.class
-DataBase\executor\Executor.class
+Servlets\FilesServlet.class

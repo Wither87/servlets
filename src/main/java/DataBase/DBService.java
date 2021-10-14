@@ -1,6 +1,4 @@
 package DataBase;
-import DataBase.dao.UsersDAO;
-import DataBase.dataSets.UsersDataSet;
 
 import java.sql.*;
 
@@ -22,8 +20,8 @@ public class DBService {
                     append("jdbc:mysql://").        //db type
                     append("localhost:").           //host name
                     append("3306/").                //port
-                    append("test?").          //db name
-                    append("user=Hotdog&").           //login
+                    append("test?").                //db name
+                    append("user=Hotdog&").         //login
                     append("password=admin");       //password
 
             System.out.println("URL: " + url + "\n");

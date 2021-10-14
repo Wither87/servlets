@@ -1,46 +1,29 @@
 package Accounts;
 
-import DataBase.DBException;
 import DataBase.DBService;
-import DataBase.dataSets.UsersDataSet;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AccountService {
-//    private static AccountService _instance = new AccountService();
-//    public static AccountService getInstance()
-//    {
-//        if (_instance == null){
-//            _instance = new AccountService();
-//        }
-//        return _instance;
-//    }
+    private static final AccountService _instance = new AccountService();
+    public static AccountService getInstance() { return _instance; };
 
-//    private AccountService(){
-//        loginToProfile = new HashMap<>();
-//        sessionIdToProfile = new HashMap<>();
-//        loginToProfile.put("admin", new UserProfile("admin"));
-//
-//    }
-    private static final DBService _dbService;
-    private static final String homeDirectory = "D:\\test\\users\\";
-    private static final Map<String, UserProfile> loginToProfile;
-    private static final Map<String, UserProfile> sessionIdToProfile;
-
-    static {
+    private AccountService(){
         loginToProfile = new HashMap<>();
         sessionIdToProfile = new HashMap<>();
         _dbService = new DBService();
         initializeDBService();
     }
 
+    private final DBService _dbService;
+    private final String homeDirectory = "D:\\test\\users\\";
+    private final Map<String, UserProfile> loginToProfile;
+    private final Map<String, UserProfile> sessionIdToProfile;
 
-    private static void initializeDBService() {
+    private void initializeDBService() {
         try{
             ResultSet rs = _dbService.getStatement().executeQuery("select * from users");
             while (rs.next()){
@@ -56,7 +39,7 @@ public class AccountService {
         }
     }
 
-    private static void createNewUser(String login, String email, String pass){
+    private void insertNewUser(String login, String email, String pass){
         try{
             String sql = String.format("insert into users (login, email, password) values ('%s', '%s', '%s');", login, email, pass);
             _dbService.getStatement().executeUpdate(sql);
@@ -65,25 +48,28 @@ public class AccountService {
         }
     }
 
-    public static String getHomeDirectory(){ return homeDirectory; }
+    public String getUserHomeDirectory(UserProfile profile) {
+        return homeDirectory + profile.getLogin() + '\\';
+    }
+    public String getHomeDirectory() { return homeDirectory; }
 
-    public static void addNewUser(UserProfile userProfile){
-        createNewUser(userProfile.getLogin(), userProfile.getEmail(), userProfile.getPass());
+    public void addNewUser(UserProfile userProfile){
+        insertNewUser(userProfile.getLogin(), userProfile.getEmail(), userProfile.getPass());
         loginToProfile.put(userProfile.getLogin(), userProfile);
     }
 
-    public static UserProfile getUserByLogin(String login){
+    public UserProfile getUserByLogin(String login){
         return loginToProfile.get(login);
     }
 
-    public static UserProfile getUserBySessionId(String sessionId){
+    public UserProfile getUserBySessionId(String sessionId){
         return sessionIdToProfile.get(sessionId);
     }
 
-    public static void addSession(String sessionId, UserProfile userProfile){
+    public void addSession(String sessionId, UserProfile userProfile){
         sessionIdToProfile.put(sessionId, userProfile);
     }
-    public static void deleteSession(String sessionId){
+    public void deleteSession(String sessionId){
         sessionIdToProfile.remove(sessionId);
     }
 }

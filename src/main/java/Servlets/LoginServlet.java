@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/login")
+
+
+@WebServlet(urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
 
+    private final AccountService accountService = AccountService.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("login.jsp").forward(req, resp);
@@ -23,17 +26,17 @@ public class LoginServlet extends HttpServlet {
         String login = req.getParameter("login");
         String pass = req.getParameter("pass");
         if (login == null || login.equals("") || pass == null || pass.equals("")){
-            resp.sendRedirect("login.jsp");
+            resp.sendRedirect("/login");
             return;
         }
 
-        UserProfile profile = AccountService.getUserByLogin(login);
+        UserProfile profile = accountService.getUserByLogin(login);
         if (profile == null || !profile.getPass().equals(pass)){
             resp.sendRedirect("login.jsp");
             return;
         }
 
-        AccountService.addSession(req.getSession().getId(), profile);
+        accountService.addSession(req.getSession().getId(), profile);
         req.getSession().setAttribute("login", login);
         resp.sendRedirect("/files");
     }
