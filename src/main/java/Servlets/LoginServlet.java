@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 
         UserProfile profile = accountService.getUserByLogin(login);
         if (profile == null || !profile.getPass().equals(pass)){
-            resp.sendRedirect("login.jsp");
+            resp.sendRedirect("/login");
             return;
         }
 

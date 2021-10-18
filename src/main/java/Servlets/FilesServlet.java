@@ -43,7 +43,7 @@ public class FilesServlet extends HttpServlet {
         req.setAttribute("files", fsr.getFiles());
         req.setAttribute("parent", fsr.getParentDirectory());
         req.setAttribute("path", fsr.getPath());
-        req.getRequestDispatcher("servletPage.jsp").forward(req, resp);
+        req.getRequestDispatcher("files.jsp").forward(req, resp);
     }
 
     private String getCanonicalPath(String path) throws IOException {

@@ -36,13 +36,13 @@ public class RegistrationServlet extends HttpServlet {
             return;
         }
 
-
-
         Path userDirectoryPath = Paths.get(accountService.getHomeDirectory() + login);
-        if (accountService.getUserByLogin(login) != null || Files.exists(userDirectoryPath)){
+        if (Files.exists(userDirectoryPath)){
             resp.setContentType("text/html;charset=utf-8");
+            //req.setAttribute("error", "Пользователь с логином уже существует");
+            //req.getRequestDispatcher("/error").forward(req, resp);
             resp.getWriter().println("Пользователь с логином уже существует");
-            //resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
 
@@ -56,12 +56,12 @@ public class RegistrationServlet extends HttpServlet {
     }
 
     private boolean loginIsCorrect(String login){
-        return login == null || login.equals("");
+        return login != null || !login.equals("");
     }
     private boolean passIsCorrect(String pass){
-        return pass  == null || pass.equals("");
+        return pass  != null || !pass.equals("");
     }
     private boolean emailIsCorrect(String email){
-        return email == null || email.equals("");
+        return email != null || !email.equals("");
     }
 }

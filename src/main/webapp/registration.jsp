@@ -12,5 +12,6 @@
             Password: <input type="password" name="pass"/><br>
             <input class="button" type="submit" value="Зарегистрироваться"/>
         </form>
+        <button onclick="window.location.href = '/login.jsp';">Логин</button>
     </body>
 </html>
